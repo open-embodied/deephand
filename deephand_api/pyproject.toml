@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deephand-hand"
+version = "0.1.0"
+description = "Python API for the DeepHand robotic hand"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "dynamixel-sdk>=4.0.3",
+    "numpy>=2.0",
+    "pyserial>=3.5",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+qt = [
+    "pyqtgraph>=0.13.7",
+    "PyQt6>=6.6",
+]
+
+[project.scripts]
+deephand-hand = "deephand_api.__main__:main"
+deephand-paxini = "deephand_api.tactile.paxini_tactile_qt:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["deephand_api*"]
+
+[tool.setuptools.package-data]
+deephand_api = ["assets/*.csv"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

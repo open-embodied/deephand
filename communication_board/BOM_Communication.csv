@@ -1,0 +1,5 @@
+Comment,Description,Designator,Footprint,LibRef,Quantity,LCSC PART #
+
+"S3B-EH(LF)(SN)","Conn Shrouded Header (3 Sides) HDR 3 POS 2.5mm Solder RA Side Entry Thru-Hole Box","J1","FP-S3B-EH_LF_SN-MFG","CMP-002-00077-1","1","C263754"
+"KW30-3S-1H connector","","J2, J3, J4, J5, J6","KW30-3S-1H","KW30-3S-1H","5","C17196752, [NoParam]"
+"MH_M1.6_Non-Plated","","MH1, MH2, MH3, MH4","MH_M1.6_Non-Plated","MH_M1.6_Non-Plated","4",""

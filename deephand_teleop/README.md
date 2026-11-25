@@ -1,0 +1,93 @@
+# DeepHand Hand Teleop
+
+MediaPipe webcam wrappers for producing DeepHand retargeting inputs. This repo
+does not own the optimizer, MuJoCo model, or hardware API:
+
+- retargeting: `deephand_retargeter`
+- simulation: `deephand_mujoco`
+- hardware: `deephand_api`
+
+Install the sibling packages during development:
+
+```bash
+pip install -e ../deephand_api
+pip install -e ../deephand_retargeter
+pip install -e .
+```
+
+By default the console entrypoint uses the current hardware test profile:
+hardware backend, webcam display, debug target printing, `/dev/ttyUSB0`,
+350 mA current limit, 50 Hz interpolated hardware commands, no input-hand lock,
+and `pip_dip_lookup` passive coupling.
+
+Run the hardware teleop profile:
+
+```bash
+deephand-hand-teleop
+```
+
+Print retargeted active joint targets from a webcam instead:
+
+```bash
+deephand-hand-teleop --backend print
+```
+
+The DeepHand MuJoCo model is currently a right hand. By default the teleop demo
+accepts either physical hand and mirrors a left-hand input into the right-hand
+robot convention. The webcam overlay shows both the raw MediaPipe handedness
+label and the corrected input hand:
+
+```bash
+deephand-hand-teleop --show --backend print --debug-targets
+```
+
+When `--show` is enabled, hold the human hand in the pose that should command
+DeepHand zero and press `c` to capture retargeter neutral calibration. Press `r`
+to clear it. This calibration is applied before print, MuJoCo, or hardware
+output while preserving the robot joint limits on each side of zero.
+
+For an unmirrored OpenCV webcam feed, MediaPipe's raw handedness label is often
+opposite the physical hand. If you mirror the camera image before detection,
+pass `--selfie`.
+
+With newer `mediapipe` wheels, the package uses the MediaPipe Tasks API and
+caches `hand_landmarker.task` at `~/.cache/deephand_teleop/` on first run.
+You can also provide the model explicitly:
+
+```bash
+deephand-hand-teleop --hand-landmarker-model /path/to/hand_landmarker.task
+```
+
+Send commands to the DeepHand MuJoCo model:
+
+```bash
+deephand-hand-teleop --backend mujoco --mujoco-viewer --show --debug-targets
+```
+
+Common live tuning overrides:
+
+```bash
+deephand-hand-teleop --backend mujoco --mujoco-viewer --show --debug-targets \
+  --no-lock-input-hand
+```
+
+For persistent defaults, edit `deephand_retargeter/tuning.py`.
+Use `--input-hand Left` or `--input-hand Right` if the MediaPipe handedness
+label flips while running. The current default allows auto input handedness to
+switch; pass `--lock-input-hand` to lock onto the first corrected physical hand
+and avoid convention switching jitter.
+
+Send commands to hardware after calibration. The hardware backend runs its own
+fixed-rate command loop, so vision frames update the target while motors receive
+interpolated commands at `--hardware-rate-hz`. Start with a low command scale
+and slow per-tick step, then increase after checking that the signs and limits
+are correct:
+
+Recommended tuned params are now the defaults:
+
+```bash
+deephand-hand-teleop
+```
+
+Override any default directly, for example `--hardware-max-step-rad 0.08`,
+`--no-debug-targets`, `--no-show`, or `--coupling-mode fixed_passive`.

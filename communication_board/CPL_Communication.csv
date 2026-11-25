@@ -1,0 +1,23 @@
+Altium Designer Pick and Place Locations
+D:\Graduate\UCLA\Romela\Merlin\Dynamixel_Hand\Dynamixel_Hand_Communication\Project Outputs for Dynamixel_Hand_Communication\Pick Place\Pick Place for Communication.csv
+
+========================================================================================================================
+File Design Information:
+
+Date:       23/05/26
+Time:       21:30
+Revision:   Not in VersionControl
+Variant:    No variations
+Units used: mm
+
+"Designator","Comment","Layer","Footprint","Center-X(mm)","Center-Y(mm)","Rotation","Description"
+"J6","KW30-3S-1H connector","TopLayer","KW30-3S-1H","25.5184","25.1528","180",""
+"J2","KW30-3S-1H connector","TopLayer","KW30-3S-1H","7.8672","11.5484","270",""
+"MH4","MH_M1.6_Non-Plated","TopLayer","MH_M1.6_Non-Plated","30.1750","1.9000","0",""
+"MH3","MH_M1.6_Non-Plated","TopLayer","MH_M1.6_Non-Plated","1.8250","1.9000","0",""
+"MH2","MH_M1.6_Non-Plated","TopLayer","MH_M1.6_Non-Plated","30.1750","32.1000","0",""
+"MH1","MH_M1.6_Non-Plated","TopLayer","MH_M1.6_Non-Plated","1.8250","32.1000","0",""
+"J5","KW30-3S-1H connector","TopLayer","KW30-3S-1H","19.1684","25.1528","180",""
+"J4","KW30-3S-1H connector","TopLayer","KW30-3S-1H","12.8184","25.1528","180",""
+"J3","KW30-3S-1H connector","TopLayer","KW30-3S-1H","6.4684","25.1528","180",""
+"J1","S3B-EH(LF)(SN)","TopLayer","FP-S3B-EH_LF_SN-MFG","22.8000","11.4300","270","Conn Shrouded Header (3 Sides) HDR 3 POS 2.5mm Solder RA Side Entry Thru-Hole Box"

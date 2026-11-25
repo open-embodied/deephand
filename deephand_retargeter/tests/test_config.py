@@ -1,0 +1,31 @@
+from pathlib import Path
+
+from deephand_retargeter.config import DeepHandRetargeterConfig
+from deephand_retargeter.constants import ACTIVE_JOINT_NAMES
+
+
+def test_default_config_exports_vector_dex_config():
+    workspace = Path(__file__).resolve().parents[2]
+    urdf_path = workspace / "deephand_mujoco" / "assets" / "deephand_description" / "deephand_hand_urdf.urdf"
+    config = DeepHandRetargeterConfig(urdf_path=urdf_path)
+    dex_config = config.to_dex_config_dict()
+
+    assert dex_config["type"] == "vector"
+    assert dex_config["target_joint_names"] == list(ACTIVE_JOINT_NAMES)
+    assert dex_config["target_link_human_indices"] == [
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [4, 3, 8, 7, 12, 11, 16, 15],
+    ]
+
+
+def test_config_accepts_pip_dip_lookup_coupling_mode():
+    workspace = Path(__file__).resolve().parents[2]
+    urdf_path = workspace / "deephand_mujoco" / "assets" / "deephand_description" / "deephand_hand_urdf.urdf"
+    config = DeepHandRetargeterConfig(
+        urdf_path=urdf_path,
+        coupling_mode="pip_dip_lookup",
+    )
+
+    dex_config = config.to_dex_config_dict()
+
+    assert dex_config["target_joint_names"] == list(ACTIVE_JOINT_NAMES)
