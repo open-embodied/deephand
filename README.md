@@ -1,5 +1,7 @@
 # DeepHand — 面向机器人学习时代的开源触觉灵巧手
 
+如何从零搭建自己的灵巧手 ：  [零搭建自己的灵巧手](https://aie.gitcc.com/embodied/deephand.html)
+
 <div align="center">
 
 **16 总自由度 · 13 主动自由度 · 283 个三轴触觉单元 · 约 700 g · BOM ≈ $3,000 · 装配 < 3 小时**
